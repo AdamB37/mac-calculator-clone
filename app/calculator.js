@@ -2,12 +2,15 @@ function stringToNumber(str) {
   return str.match(/[.]/) ? parseFloat(str) : parseInt(str)
 }
 
-function Calculator() {
+
+function Calculator(calculatorDom) {
+  this.dom = calculatorDom
   this.operationMode = 'number'
   this.numberMode = 'primary'
   this.primaryNumber = '0'
   this.secondaryNumber = ''
   this.operation = ''
+  this.addListener()
 }
 
 Calculator.prototype.setOperationMode = function(operationMode) {
@@ -198,82 +201,91 @@ Calculator.prototype.handleDisplay = function() {
   }
 }
 
-
-const calculator = new Calculator()
-document.getElementsByClassName("calculator")[0].addEventListener('click', function(event) {
+Calculator.prototype.inputHandler = function(event) {
   switch(event.target.innerHTML) {
     case '0':
-      calculator.numberClick('0')
-      calculator.handleDisplay()
-      break
+    this.numberClick('0')
+    this.handleDisplay()
+    break
     case '1':
-      calculator.numberClick('1')
-      calculator.handleDisplay()
-      break
+    this.numberClick('1')
+    this.handleDisplay()
+    break
     case '2':
-      calculator.numberClick('2')
-      calculator.handleDisplay()
-      break
+    this.numberClick('2')
+    this.handleDisplay()
+    break
     case '3':
-      calculator.numberClick('3')
-      calculator.handleDisplay()
-      break
+    this.numberClick('3')
+    this.handleDisplay()
+    break
     case '4':
-      calculator.numberClick('4')
-      calculator.handleDisplay()
-      break
+    this.numberClick('4')
+    this.handleDisplay()
+    break
     case '5':
-      calculator.numberClick('5')
-      calculator.handleDisplay()
-      break
+    this.numberClick('5')
+    this.handleDisplay()
+    break
     case '6':
-      calculator.numberClick('6')
-      calculator.handleDisplay()
-      break
+    this.numberClick('6')
+    this.handleDisplay()
+    break
     case '7':
-      calculator.numberClick('7')
-      calculator.handleDisplay()
-      break
+    this.numberClick('7')
+    this.handleDisplay()
+    break
     case '8':
-      calculator.numberClick('8')
-      calculator.handleDisplay()
-      break
+    this.numberClick('8')
+    this.handleDisplay()
+    break
     case '9':
-      calculator.numberClick('9')
-      calculator.handleDisplay()
-      break
+    this.numberClick('9')
+    this.handleDisplay()
+    break
     case '+':
-      calculator.operationClick('+')
-      break
+    this.operationClick('+')
+    break
     case '-':
-      calculator.operationClick('-')
-      break
+    this.operationClick('-')
+    break
     case 'x':
-      calculator.operationClick('x')
-      break
+    this.operationClick('x')
+    break
     case '÷':
-      calculator.operationClick('÷')
-      break
+    this.operationClick('÷')
+    break
     case '±':
-      calculator.inverse()
-      calculator.handleDisplay()
-      break
+    this.inverse()
+    this.handleDisplay()
+    break
     case '%':
-      calculator.percent()
-      calculator.handleDisplay()
-      break
+    this.percent()
+    this.handleDisplay()
+    break
     case '=':
-      calculator.evaluate()
-      break
+    this.evaluate()
+    break
     case '.':
-      calculator.decimal()
-      calculator.handleDisplay()
-      break
+    this.decimal()
+    this.handleDisplay()
+    break
     case 'AC':
     case 'C':
-      calculator.clear()
-      break
+    this.clear()
+    break
     default:
-      break
+    break
   }
-})
+}
+
+Calculator.prototype.addListener = function() {
+  this.dom.addEventListener('click', this.inputHandler)
+}
+
+
+var domArray = document.getElementsByClassName("calculator")
+for(var i = 0; i < domArray.length; i++) {
+  var calculator = new Calculator(domArray[i])
+  console.log(calculator)
+}

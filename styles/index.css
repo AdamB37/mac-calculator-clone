@@ -1,3 +1,9 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%;
+}
 .calculator {
   display: flex;
   height: 321px;

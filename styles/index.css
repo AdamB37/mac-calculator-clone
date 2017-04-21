@@ -4,11 +4,7 @@
   width: 233.5px;
   flex-wrap: wrap;
 }
-.calculator-row {
-  display: flex;
-  flex-direction: row;
-  height: 15%;
-}
+
 .calculator-prompt {
   height: 25%;
   width: 100%;
@@ -24,6 +20,7 @@
   font-size: 35.5pt;
   font-weight: 100;
 }
+
 .calculator-prompt:active {
   background-color: rgb(153, 153, 153);
   border: 0;
